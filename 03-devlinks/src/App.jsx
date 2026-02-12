@@ -9,10 +9,6 @@ function App() {
 
       <Perfil />
 
-      <div className='perfil'>
-        <img src="https://placehold.co/200x200" alt=''/>
-        <p>@carmenWinstead</p>
-      </div>
       <div className='Switch'>Botão</div>
       <div className='links'></div>
       <div className='socialLinks'></div>
