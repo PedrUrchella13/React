@@ -13,13 +13,14 @@ function App() {
       <Perfil fotoPerfil={"https://placehold.co/100x100"}>PedrUrchella</Perfil>
 
       <div className='Switch'>Botão</div>
-
+      <div id="Link">
       <ul>
         <Link url={""}>Inscreva-se</Link>
         <Link url={""}>Minha Playlist</Link>
         <Link url={""}>Me paga uma Torta de Morango!</Link>
         <Link url={""}>Conheça o Dev!</Link>
       </ul>
+      </div>
       
       <div className='socialLinks'>
         <SocialLink url={"https://github.com"} icon={"logo-github"} />
