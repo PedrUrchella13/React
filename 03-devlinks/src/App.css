@@ -1,0 +1,7 @@
+:root{
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+}
+
+#App {
+    background: var(--bg-url)
+}
