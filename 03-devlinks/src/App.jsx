@@ -4,16 +4,22 @@ import Perfil from './components/Perfil/Perfil'
 import SocialLink from './components/SocialLink/SocialLink'
 import Rodape from './components/Rodape/Rodape/Rodape'
 import Switch from './components/Switch/Switch'
+import { useState } from 'react'
 
 function App() {
+  const [isLight,setIsLight] = useState(true);
+  const troca = () => {
+    setIsLight(!isLight)
+  };
+
 <div className="2"></div>
   return (
-    <div id="App">
-
+    <div id="App" className={isLight ? "light" : ""}>
+      
       
       <Perfil fotoPerfil={"https://placehold.co/100x100"}>PedrUrchella</Perfil>
 
-    <Switch />
+    <Switch troca={troca} isLight={isLight}/>
 
       <div id="Link">
       <ul>
