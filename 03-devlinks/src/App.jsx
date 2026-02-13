@@ -3,6 +3,7 @@ import Link from './components/Link/Link'
 import Perfil from './components/Perfil/Perfil'
 import SocialLink from './components/SocialLink/SocialLink'
 import Rodape from './components/Rodape/Rodape/Rodape'
+import Switch from './components/Switch/Switch'
 
 function App() {
 <div className="2"></div>
@@ -12,7 +13,8 @@ function App() {
       
       <Perfil fotoPerfil={"https://placehold.co/100x100"}>PedrUrchella</Perfil>
 
-      <div className='Switch'>Botão</div>
+    <Switch />
+
       <div id="Link">
       <ul>
         <Link url={""}>Inscreva-se</Link>
@@ -22,7 +24,7 @@ function App() {
       </ul>
       </div>
       
-      <div className='socialLinks'>
+      <div id='SocialLinks'>
         <SocialLink url={"https://github.com"} icon={"logo-github"} />
         <SocialLink url={"https://instagram.com"} icon={"logo-instagram"} />
         <SocialLink url={"https://youtube.com"} icon={"logo-youtube"} />

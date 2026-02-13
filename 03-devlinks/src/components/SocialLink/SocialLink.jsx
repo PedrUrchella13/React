@@ -1,5 +1,5 @@
 import React from 'react'
-import "./SocialLink.module.css"
+
 
 const SocialLink = ({url, icon}) => {
   return (

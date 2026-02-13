@@ -15,6 +15,7 @@
     align-items: center;
     
     height: 100vh;
+    width: 100%;
     background-image: var(--bg-url);
     color: var(--text-color);
     background-repeat: no-repeat;
@@ -23,12 +24,19 @@
     color: var(--text-color)
 }
 
-#Link ul{
-    list-style: none;
+#Link {
     display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 24px;
+    justify-content: center;
+
+    ul{
+        width: 100%;
+        max-width: 588px;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 24px;
+    }
 }
 
 #SocialLinks {
