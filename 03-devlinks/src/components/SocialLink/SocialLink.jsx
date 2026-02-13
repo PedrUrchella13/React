@@ -1,12 +1,11 @@
 import React from 'react'
+import "./SocialLink.module.css"
 
-const SocialLink = ({ url, icon }) => {
+const SocialLink = ({url, icon}) => {
   return (
-    
-      <a href={url}>
+    <a href={url}>
         <ion-icon name={icon}></ion-icon>
-      </a>
-    
+    </a>
   )
 }
 
