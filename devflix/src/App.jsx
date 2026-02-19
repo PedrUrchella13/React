@@ -1,13 +1,29 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./assets/devflix.png";
 import lupa from "./assets/search.svg";
 import Rodape from "./components/Rodape/Rodape";
 
 const App = () => {
+  const [movies, setMovies] = useState([]);
+  //Chave da API do arquivo .env
+  const apiKey = import.meta.env.VITE_OMDB_API_KEY;
+  const apiUrl = `https://omdbapi.com/?apikey=${apiKey}`;
+  //Criando conexão com a API e trazendo informações
+  const searchMovies = async (title) => {
+    const response = await fetch(`${apiUrl}&s=${title}`);
+    const data = await response.json;
+
+    setMovies(data.Search);
+  };
+
+  useEffect(() => {
+    searchMovies("Batman");
+}, [])
   return (
     <div id="App">
       <img
-        className="logo"
+        id="Logo"
         src={logo}
         alt="Texto vermelho escrito 'DEVFLIX', em caixa alta e curvatura em baixo"
       />
@@ -17,6 +33,11 @@ const App = () => {
         <img src={lupa} alt="Botão de ação para pesquisar em forma de lupa" />
       </div>
 
+    <div className="container">
+      {movies.map((movie, index) => (}
+      
+    </div>
+    
       <Rodape link={"https://github.com/PedrUrchella13"}>AlunoUrchella</Rodape>
     </div>
   );
