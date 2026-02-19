@@ -5,7 +5,7 @@ import Rodape from "./components/Rodape/Rodape";
 
 const App = () => {
   return (
-    <div>
+    <div id="App">
       <img
         className="logo"
         src={logo}

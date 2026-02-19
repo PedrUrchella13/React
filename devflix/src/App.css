@@ -24,4 +24,14 @@
 body {
   font-family: var(--font-raleway);
   background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#App{
+  padding:4em;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
