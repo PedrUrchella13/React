@@ -3,6 +3,7 @@ import "./App.css";
 import logo from "./assets/devflix.png";
 import lupa from "./assets/search.svg";
 import Rodape from "./components/Rodape/Rodape";
+import MovieCard from "./components/MovieCard/MovieCard";
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -12,14 +13,14 @@ const App = () => {
   //Criando conexão com a API e trazendo informações
   const searchMovies = async (title) => {
     const response = await fetch(`${apiUrl}&s=${title}`);
-    const data = await response.json;
+    const data = await response.json();
 
     setMovies(data.Search);
   };
 
   useEffect(() => {
-    searchMovies("Batman");
-}, [])
+    searchMovies("Star Wars");
+  }, []);
   return (
     <div id="App">
       <img
@@ -33,11 +34,14 @@ const App = () => {
         <img src={lupa} alt="Botão de ação para pesquisar em forma de lupa" />
       </div>
 
-    <div className="container">
-      {movies.map((movie, index) => (}
-      
-    </div>
-    
+      {movies?.length > 0 ? (
+        <div className="container">
+          {movies.map((movie, index) => (
+            <MovieCard key={index} {...movie} />
+          ))}
+        </div>
+      ) : ( <h2>Filme não encontrado ＞︿＜</h2>)}
+
       <Rodape link={"https://github.com/PedrUrchella13"}>AlunoUrchella</Rodape>
     </div>
   );
