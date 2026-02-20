@@ -7,6 +7,7 @@ import MovieCard from "./components/MovieCard/MovieCard";
 
 const App = () => {
   const [movies, setMovies] = useState([]);
+  const [search, setSearch] = useState("")
   //Chave da API do arquivo .env
   const apiKey = import.meta.env.VITE_OMDB_API_KEY;
   const apiUrl = `https://omdbapi.com/?apikey=${apiKey}`;
@@ -19,7 +20,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    searchMovies("ROBLOX FNAF: Chica's Requiem"); //pesquisa rudimentar
+    searchMovies(""); //pesquisa rudimentar
   }, []);
   return (
     <div id="App">
@@ -30,8 +31,8 @@ const App = () => {
       />
 
       <div className="search">
-        <input type="text" placeholder="Pesquise por filmes e séries..." />
-        <img src={lupa} alt="Botão de ação para pesquisar em forma de lupa" />
+        <input onKeyDown={(e) => e.key === "Enter" && searchMovies(search)} onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Pesquise por filmes e séries..." />
+        <img onClick={() => searchMovies(search)} src={lupa} alt="Botão de ação para pesquisar em forma de lupa" />
       </div>
 
       {movies?.length > 0 ? (
