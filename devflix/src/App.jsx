@@ -19,7 +19,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    searchMovies("America");
+    searchMovies("ROBLOX FNAF: Chica's Requiem"); //pesquisa rudimentar
   }, []);
   return (
     <div id="App">
@@ -40,7 +40,7 @@ const App = () => {
             <MovieCard key={index} {...movie} />
           ))}
         </div>
-      ) : ( <h2>Filme não encontrado ＞︿＜</h2>)}
+      ) : ( <h2 className="empty">Filme não encontrado ＞︿＜</h2>)}
 
       <Rodape link={"https://github.com/PedrUrchella13"}>AlunoUrchella</Rodape>
     </div>
