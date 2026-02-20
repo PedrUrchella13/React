@@ -38,7 +38,7 @@ const App = () => {
       {movies?.length > 0 ? (
         <div className="container">
           {movies.map((movie, index) => (
-            <MovieCard key={index} {...movie} />
+            <MovieCard key={index} {...movie} apiUrl={apiUrl}/>
           ))}
         </div>
       ) : ( <h2 className="empty">Filme não encontrado ＞︿＜</h2>)}
