@@ -19,7 +19,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    searchMovies("Star Wars");
+    searchMovies("America");
   }, []);
   return (
     <div id="App">
