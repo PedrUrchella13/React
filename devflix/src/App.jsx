@@ -22,9 +22,9 @@ const App = () => {
   useEffect(() => {
     (async () => {
       await searchMovies("Hulk");
-    }) ();
+    })();
   }, []);
-  
+
   return (
     <div id="App">
       <img
