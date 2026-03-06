@@ -1,54 +1,67 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import styles from "./MovieDescription.module.css";
+import LanguageSelector from "../LanguageSelector/LanguageSelector";
 
 const MovieDescription = (props) => {
   const [movieDesc, setMovieDesc] = useState({});
   const [translatedPlot, setTranslatedPlot] = useState("");
+  const [translatedInfo, setTranslatedInfo] = useState({});
   const [isTranslating, setIsTranslating] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState(() => {
+    const saved = localStorage.getItem("selectedLanguage");
+    if (saved) return saved;
+    return (navigator.languages?.[0] || navigator.language).split("-")[0];
+  });
 
-  // detecta idioma do sistema do usuário
-  const systemLang = (navigator.languages?.[0] || navigator.language).split("-")[0];
-
-  const translateText = async (text) => {
-    try {
-
-      // se o idioma do usuário já for inglês, não traduz
-      if (systemLang === "en") return text;
-
-      const response = await fetch(
-        `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${systemLang}&dt=t&q=${encodeURIComponent(text)}`
-      );
-
-      const data = await response.json();
-
-      if (Array.isArray(data?.[0])) {
-        return data[0].map((item) => item?.[0]).join("");
-      }
-
-      return text;
-
-    } catch (error) {
-      console.error("Erro ao traduzir sinopse:", error);
-      return text;
-    }
+  const handleLanguageChange = (lang) => {
+    setSelectedLanguage(lang);
+    localStorage.setItem("selectedLanguage", lang);
   };
+
+  const translateText = useCallback(
+    async (text) => {
+      try {
+        if (selectedLanguage === "en" || !text || text === "N/A") return text;
+
+        const response = await fetch(
+          `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${selectedLanguage}&dt=t&q=${encodeURIComponent(text)}`,
+        );
+
+        const data = await response.json();
+
+        if (Array.isArray(data?.[0])) {
+          return data[0].map((item) => item?.[0]).join("");
+        }
+
+        return text;
+      } catch (error) {
+        console.error("Erro ao traduzir:", error);
+        return text;
+      }
+    },
+    [selectedLanguage],
+  );
 
   useEffect(() => {
     const loadMovie = async () => {
       try {
-
         const response = await fetch(`${props.apiUrl}&i=${props.movieID}`);
         const data = await response.json();
 
         setMovieDesc(data);
 
         if (data?.Plot && data.Plot !== "N/A") {
-
           setIsTranslating(true);
 
-          const translated = await translateText(data.Plot);
+          const translatedPlot = await translateText(data.Plot);
+          const translatedGenre = await translateText(data.Genre);
+          const translatedActors = await translateText(data.Actors);
 
-          setTranslatedPlot(translated);
+          setTranslatedPlot(translatedPlot);
+          setTranslatedInfo({
+            genre: translatedGenre,
+            actors: translatedActors,
+          });
 
           setIsTranslating(false);
 
@@ -56,9 +69,7 @@ const MovieDescription = (props) => {
         }
 
         setTranslatedPlot("Sinopse indisponível.");
-
       } catch (error) {
-
         console.error(error);
 
         setTranslatedPlot("Não foi possível carregar a sinopse.");
@@ -66,17 +77,23 @@ const MovieDescription = (props) => {
     };
 
     loadMovie();
-  }, [props.apiUrl, props.movieID]);
+  }, [props.apiUrl, props.movieID, translateText]);
 
   return (
     <div className={styles.modalBackdrop} onClick={props.click}>
       <div className={styles.movieModal} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.movieInfo}>
-          <img src={movieDesc.Poster} alt="" />
-
+        <div className={styles.movieHeader}>
           <button className={styles.btnClose} onClick={props.click}>
             X
           </button>
+          <LanguageSelector
+            selectedLanguage={selectedLanguage}
+            onLanguageChange={handleLanguageChange}
+          />
+        </div>
+
+        <div className={styles.movieInfo}>
+          <img src={movieDesc.Poster} alt="" />
 
           <div className={styles.movieType}>
             <div>
@@ -102,8 +119,8 @@ const MovieDescription = (props) => {
           </div>
 
           <div className={styles.containerFlex}>
-            <p>Elenco: {movieDesc.Actors}</p>
-            <p>Gênero: {movieDesc.Genre}</p>
+            <p>Elenco: {translatedInfo.actors || movieDesc.Actors}</p>
+            <p>Gênero: {translatedInfo.genre || movieDesc.Genre}</p>
           </div>
         </div>
 

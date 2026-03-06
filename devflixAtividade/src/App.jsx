@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import "./App.css";
 import logoLight from "./assets/octopusBayLight.png";
 import logoDark from "./assets/octopusBayDark.png";
@@ -8,7 +8,6 @@ import MovieCard from "./components/MovieCard/MovieCard";
 import sun from "./assets/Sun.svg";
 import moon from "./assets/MoonStars.svg";
 
-
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [movies, setMovies] = useState([]);
@@ -17,23 +16,29 @@ const App = () => {
   const apiKey = import.meta.env.VITE_OMDB_API_KEY;
   const apiUrl = `https://omdbapi.com/?apikey=${apiKey}`;
   //Criando conexão com a API e trazendo informações
-  const searchMovies = async (title) => {
-    const response = await fetch(`${apiUrl}&s=${title}`);
-    const data = await response.json();
+  const searchMovies = useCallback(
+    async (title) => {
+      const response = await fetch(`${apiUrl}&s=${title}`);
+      const data = await response.json();
 
-    setMovies(data.Search);
-  };
+      setMovies(data.Search);
+    },
+    [apiUrl],
+  );
 
   useEffect(() => {
-    (async () => {
-      await searchMovies("Hulk");
-    }) ();
-  }, []);
-  
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    searchMovies("Hulk");
+  }, [searchMovies]);
+
   return (
     <div id="App" className={darkMode ? "dark" : ""}>
       <button id="trocarTema" onClick={() => setDarkMode(!darkMode)}>
-        <img src={darkMode ? moon : sun} alt="icone do tema" style={{ display:"flex", alignSelf: "center", width: "30px" }}/>
+        <img
+          src={darkMode ? moon : sun}
+          alt="icone do tema"
+          style={{ display: "flex", alignSelf: "center", width: "30px" }}
+        />
       </button>
 
       <img
