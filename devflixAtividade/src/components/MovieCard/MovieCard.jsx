@@ -4,6 +4,17 @@ import MovieDescription from "../MovieDescription/MovieDescription";
 
 const MovieCard = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Tradução do tipo
+  const translateType = (type) => {
+    const types = {
+      movie: "Filme",
+      series: "Série",
+      episode: "Episódio",
+      game: "Jogo",
+    };
+    return types[type?.toLowerCase()] || type;
+  };
   // console.log(isModalOpen);
 
   const toggleModal = () => {
@@ -22,7 +33,7 @@ const MovieCard = (props) => {
         </div>
 
         <div>
-          <span>{props.Type}</span>
+          <span>{translateType(props.Type)}</span>
           <h3>{props.Title}</h3>
         </div>
       </div>

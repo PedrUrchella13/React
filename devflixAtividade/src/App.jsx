@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import logo from "./assets/devflix.png";
+import logoLight from "./assets/octopusBayLight.png";
+import logoDark from "./assets/octopusBayDark.png";
 import lupa from "./assets/search.svg";
 import Rodape from "./components/Rodape/Rodape";
 import MovieCard from "./components/MovieCard/MovieCard";
+import sun from "./assets/Sun.svg";
+import moon from "./assets/MoonStars.svg";
+
 
 const App = () => {
+  const [darkMode, setDarkMode] = useState(false);
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
   //Chave da API do arquivo .env
@@ -26,10 +31,14 @@ const App = () => {
   }, []);
   
   return (
-    <div id="App">
+    <div id="App" className={darkMode ? "dark" : ""}>
+      <button id="trocarTema" onClick={() => setDarkMode(!darkMode)}>
+        <img src={darkMode ? moon : sun} alt="icone do tema" style={{ display:"flex", alignSelf: "center", width: "30px" }}/>
+      </button>
+
       <img
         id="Logo"
-        src={logo}
+        src={darkMode ? logoDark : logoLight}
         alt="Texto vermelho escrito 'DEVFLIX', em caixa alta e curvatura em baixo"
       />
 

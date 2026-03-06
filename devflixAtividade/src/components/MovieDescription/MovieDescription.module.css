@@ -58,6 +58,7 @@
   width: 35px;
   height: 35px;
   border-radius: 50%;
+  border: 0;
   background: var(--accent-color);
   color: #fff;
   cursor: pointer;

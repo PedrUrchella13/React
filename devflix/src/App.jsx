@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import logo from "./assets/devflix.png";
+import logo from "./assets/";
 import lupa from "./assets/search.svg";
 import Rodape from "./components/Rodape/Rodape";
 import MovieCard from "./components/MovieCard/MovieCard";
