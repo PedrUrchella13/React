@@ -5,7 +5,7 @@ footer{
     color: (--text-primary);
 
     & a {
-        color: var(--accent-color);
+        color: var(--text-primary);
         text-decoration: dotted;
         font-weight: bold;
     }

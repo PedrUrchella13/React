@@ -16,8 +16,8 @@
 .dark {
   /* Dark theme */
   --bg-primary: #06152b;
-  --bg-secondary: #ffc143;
-  --text-primary: #fff;
+  --bg-secondary: #d3a84d;
+  --text-primary: #eee;
   --text-secondary: #eee;
   --text-placeholder: #eee;
   --accent-color: #000;
@@ -116,7 +116,7 @@ body {
   margin-top: 2rem;
   text-align: center;
 
-  color: var(--accent-color);
+  color: var(--text-primary);
 }
 
 .container {
