@@ -1,0 +1,58 @@
+#card {
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+  max-height: 463;
+  background: linear-gradient(to top, #2b87ae, #19587b);
+}
+
+.top_banner {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  max-width: 250px;
+  max-height: 300px;
+}
+
+.image {
+  width: 100%;
+}
+
+#bottom_info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.offer {
+  align-items: start;
+  padding: 1vh;
+  font-weight: bold;
+  font-size: 1.3vh;
+}
+
+.discount {
+  display: flex;
+  flex-direction: row;
+}
+
+.discountPercentage {
+  flex: 1;
+  background-color: #4c6b22;
+  color: #beeb14;
+  max-width: 80px;
+  max-height: 37px;
+  width: 100%;
+}
+
+.discountPrice {
+  display: flex;
+}
+
+/*width: 250;
+height: 463;
+top: 239px;
+left: 290px;
+angle: 0 deg;
+opacity: 1;
+*/
