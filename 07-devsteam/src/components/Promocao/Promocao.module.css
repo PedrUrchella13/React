@@ -5,6 +5,13 @@
   max-height: 463;
   background: linear-gradient(to top, #2b87ae, #19587b);
 }
+#card {
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+  max-height: 463;
+  background: linear-gradient(to top, #2b87ae, #19587b);
+}
 
 .top_banner {
   flex: 1;
@@ -34,25 +41,59 @@
 .discount {
   display: flex;
   flex-direction: row;
+  padding: 1.6vh;
+  align-items: start;
 }
 
 .discountPercentage {
   flex: 1;
+  display: flex;
   background-color: #4c6b22;
   color: #beeb14;
   max-width: 80px;
   max-height: 37px;
   width: 100%;
+  font-size: 2.5vh;
+  align-items: center;
+  justify-content: center;
 }
 
 .discountPrice {
+  flex: 1;
   display: flex;
+  background-color: #344654;
+  flex-direction: column;
+  align-items: end;
+  max-width: 100px;
+  max-height: 37px;
+  max-width: 100%;
 }
 
-/*width: 250;
-height: 463;
-top: 239px;
-left: 290px;
-angle: 0 deg;
-opacity: 1;
-*/
+.discountPrice h3 {
+  font-size: 0.8vh;
+}
+
+.discountPrice h1{
+  font-size: 0.9em;
+  color: #BEEB14;
+  font-weight: bolder;
+}
+
+.addCart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #549300;
+  transition: background-color 0.2s ease;
+  margin-inline: 5%;
+  font-size: 0.9em;
+  padding: 1vh;
+  margin-bottom: 10%;
+  border-radius: 10px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.addCart:hover {
+  background-color: #4c6b22;
+}

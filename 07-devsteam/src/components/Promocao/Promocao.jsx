@@ -20,10 +20,10 @@ const Promocao = () => {
           </div>
           <div className={styles.discountPrice}>
             <h3>R$199,80</h3>
-            <h1></h1>
+            <h1>R$99,90</h1>
           </div>
         </div>
-        <div className={styles.addCart}></div>
+        <div className={styles.addCart}>ADICIONAR AO CARRINHO</div>
       </div>
     </div>
   );
