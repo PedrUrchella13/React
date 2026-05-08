@@ -1,0 +1,48 @@
+#header_main {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  background-color: black;
+  justify-content: center;
+  padding: 20px 0;
+  color: #fff;
+  font-size: 1em;
+}
+
+.nav_container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex: 1;
+  gap: 1em;
+}
+
+.search {
+  flex: 1;
+  & input {
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #316282;
+    border: 0;
+    padding: 1em 1em;
+    width: 100%;
+    font-size: 20;
+  }
+
+  & input::placeholder {
+    color: #c7c7c7;
+    font-size: 20px;
+  }
+}
+
+.cart {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
